@@ -3,8 +3,8 @@ package com.maxdoro.employer.di
 import android.content.Context
 import androidx.room.Room
 import com.maxdoro.employer.common.Constants
-import com.maxdoro.employer.data.local.dao.EmployerDao
 import com.maxdoro.employer.data.local.MaxdoroDatabase
+import com.maxdoro.employer.data.local.dao.CachedEmployerDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -28,7 +28,7 @@ object RoomModule {
 
     @Provides
     @Singleton
-    fun provideEmployerDao(database: MaxdoroDatabase): EmployerDao {
-        return database.employerDao()
+    fun provideCachedEmployerDao(database: MaxdoroDatabase): CachedEmployerDao {
+        return database.cachedEmployerDao()
     }
 }
