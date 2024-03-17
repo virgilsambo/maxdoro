@@ -1,19 +1,19 @@
 package com.maxdoro.employer.data.local
 
-import com.maxdoro.employer.data.local.dao.EmployerDao
 import com.maxdoro.employer.data.local.model.EmployerEntity
-import com.maxdoro.employer.data.local.EmployerLocalDataSource
+import com.maxdoro.employer.data.local.dao.CachedEmployerDao
+import com.maxdoro.employer.data.local.model.CachedEmployer
 import kotlinx.coroutines.flow.Flow
 
 class EmployerLocalDataSourceImpl(
-    private val employerDao: EmployerDao
+    private val cachedEmployerDao: CachedEmployerDao
 ) : EmployerLocalDataSource {
 
-    override fun getEmployers(): Flow<List<EmployerEntity>> {
-        return employerDao.getEmployers()
+    override fun getCachedEmployers(filter: String): Flow<CachedEmployer?> {
+        return cachedEmployerDao.getCachedEmployer(filter)
     }
 
-    override suspend fun updateEmployers(employers: List<EmployerEntity>) {
-        return employerDao.updateEmployers(employers)
+    override suspend fun updateCachedEmployers(cachedEmployer: CachedEmployer) {
+        return cachedEmployerDao.updateCachedEmployers(cachedEmployer)
     }
 }

@@ -3,13 +3,13 @@ package com.maxdoro.employer.di
 import com.maxdoro.employer.data.remote.EmployerNetworkDataSource
 import com.maxdoro.employer.data.remote.EmployerNetworkDataSourceImpl
 import com.maxdoro.employer.data.remote.MaxdoroApi
-import com.maxdoro.employer.data.local.dao.EmployerDao
 import com.maxdoro.employer.data.local.EmployerLocalDataSource
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import com.maxdoro.employer.data.local.EmployerLocalDataSourceImpl
+import com.maxdoro.employer.data.local.dao.CachedEmployerDao
 import javax.inject.Singleton
 
 @Module
@@ -24,7 +24,11 @@ object DataSourceModule {
 
     @Provides
     @Singleton
-    fun provideEmployerLocalDataSource(employerDao: EmployerDao): EmployerLocalDataSource {
-        return EmployerLocalDataSourceImpl(employerDao = employerDao)
+    fun provideEmployerLocalDataSource(
+        cachedEmployerDao: CachedEmployerDao
+    ): EmployerLocalDataSource {
+        return EmployerLocalDataSourceImpl(
+            cachedEmployerDao = cachedEmployerDao
+        )
     }
 }
