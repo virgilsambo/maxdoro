@@ -6,6 +6,10 @@ import androidx.compose.runtime.setValue
 import androidx.compose.runtime.snapshotFlow
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.maxdoro.employer.common.SortCriteria
+import com.maxdoro.employer.common.sortByDiscountPercentage
+import com.maxdoro.employer.common.sortByName
+import com.maxdoro.employer.common.sortByPlace
 import com.maxdoro.employer.domain.GetEmployerSearchResultsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.collections.immutable.persistentListOf
@@ -24,7 +28,7 @@ import javax.inject.Inject
 @HiltViewModel
 class SearchViewModel @Inject constructor(
     val getEmployerSearchResultsUseCase: GetEmployerSearchResultsUseCase
-): ViewModel() {
+) : ViewModel() {
 
     private val _uiState = MutableStateFlow(SearchUiState())
     val uiState = _uiState.asStateFlow()
@@ -36,7 +40,7 @@ class SearchViewModel @Inject constructor(
         initialiseUiState()
     }
 
-    fun initialiseUiState() {
+    private fun initialiseUiState() {
         snapshotFlow { searchQuery }
             .debounce(250L)
             .onEach { query ->
@@ -58,7 +62,15 @@ class SearchViewModel @Inject constructor(
                         }
 
                         is com.maxdoro.employer.common.Result.Success -> {
-                            val searchResults = result.data.toPersistentList()
+                            var searchResults = result.data.toPersistentList().toMutableList()
+
+                            searchResults = when (_uiState.value.sortCriteria) {
+                                SortCriteria.Place -> searchResults.sortByPlace().toMutableList()
+                                SortCriteria.DiscountPercentage -> searchResults.sortByDiscountPercentage()
+                                    .toMutableList()
+
+                                SortCriteria.Name -> searchResults.sortByName().toMutableList()
+                            }
 
                             _uiState.update {
                                 it.copy(
@@ -85,6 +97,20 @@ class SearchViewModel @Inject constructor(
 
     fun updateSearchQuery(newQuery: String) {
         searchQuery = newQuery
+    }
+
+    fun updateSortCriteria(sortCriteria: SortCriteria) {
+        _uiState.update {
+            it.copy(sortCriteria = sortCriteria)
+        }
+
+        initialiseUiState()
+    }
+
+    fun updateShowSortingSheet(showBottomSheet: Boolean) {
+        _uiState.update {
+            it.copy(showSortingSheet = showBottomSheet)
+        }
     }
 
 }
