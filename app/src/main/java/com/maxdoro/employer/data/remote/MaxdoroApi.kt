@@ -1,4 +1,4 @@
-package com.maxdoro.employer.data
+package com.maxdoro.employer.data.remote
 
 import com.maxdoro.employer.common.Constants.QUERY_PARAM_EMPLOYER_ID
 import com.maxdoro.employer.common.Constants.QUERY_PARAM_FILTER

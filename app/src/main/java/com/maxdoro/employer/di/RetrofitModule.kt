@@ -1,7 +1,7 @@
 package com.maxdoro.employer.di
 
 import com.maxdoro.employer.common.Constants
-import com.maxdoro.employer.data.MaxdoroApi
+import com.maxdoro.employer.data.remote.MaxdoroApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

@@ -1,4 +1,4 @@
-package com.maxdoro.employer.data
+package com.maxdoro.employer.data.remote
 
 import com.maxdoro.employer.model.Employer
 import retrofit2.Response
@@ -6,7 +6,7 @@ import javax.inject.Inject
 
 class EmployerNetworkDataSourceImpl @Inject constructor(
     private val maxdoroApi: MaxdoroApi
-):EmployerNetworkDataSource {
+): EmployerNetworkDataSource {
     override suspend fun getEmployerSearchResults(searchQuery: String): Response<List<Employer>> {
         return maxdoroApi.getEmployerSearchResults(searchQuery = searchQuery, maxRows = 100)
     }

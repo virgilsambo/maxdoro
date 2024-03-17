@@ -1,4 +1,4 @@
-package com.maxdoro.employer.data
+package com.maxdoro.employer.data.remote
 
 import com.maxdoro.employer.common.Result
 import com.maxdoro.employer.model.Employer

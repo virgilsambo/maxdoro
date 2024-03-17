@@ -1,8 +1,8 @@
 package com.maxdoro.employer.di
 
-import com.maxdoro.employer.data.EmployerNetworkDataSource
-import com.maxdoro.employer.data.EmployerRepository
-import com.maxdoro.employer.data.EmployerRepositoryImpl
+import com.maxdoro.employer.data.remote.EmployerNetworkDataSource
+import com.maxdoro.employer.data.remote.EmployerRepository
+import com.maxdoro.employer.data.remote.EmployerRepositoryImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

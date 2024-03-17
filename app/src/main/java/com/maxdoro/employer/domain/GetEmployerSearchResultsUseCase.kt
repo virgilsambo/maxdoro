@@ -1,7 +1,7 @@
 package com.maxdoro.employer.domain
 
 import com.maxdoro.employer.common.Result
-import com.maxdoro.employer.data.EmployerRepository
+import com.maxdoro.employer.data.remote.EmployerRepository
 import com.maxdoro.employer.model.Employer
 import javax.inject.Inject
 
