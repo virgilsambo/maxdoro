@@ -4,12 +4,12 @@ import com.maxdoro.employer.data.remote.EmployerNetworkDataSource
 import com.maxdoro.employer.data.remote.EmployerNetworkDataSourceImpl
 import com.maxdoro.employer.data.remote.MaxdoroApi
 import com.maxdoro.employer.data.local.dao.EmployerDao
-import com.maxdoro.employer.data.local.MaxdoroLocalDataSource
+import com.maxdoro.employer.data.local.EmployerLocalDataSource
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import dev.shorthouse.coinwatch.data.source.local.MaxdoroLocalDataSourceImpl
+import com.maxdoro.employer.data.local.EmployerLocalDataSourceImpl
 import javax.inject.Singleton
 
 @Module
@@ -24,7 +24,7 @@ object DataSourceModule {
 
     @Provides
     @Singleton
-    fun provideEmployerLocalDataSource(employerDao: EmployerDao): MaxdoroLocalDataSource {
-        return MaxdoroLocalDataSourceImpl(employerDao = employerDao)
+    fun provideEmployerLocalDataSource(employerDao: EmployerDao): EmployerLocalDataSource {
+        return EmployerLocalDataSourceImpl(employerDao = employerDao)
     }
 }

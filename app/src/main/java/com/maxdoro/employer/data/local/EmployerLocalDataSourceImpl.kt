@@ -1,13 +1,13 @@
-package dev.shorthouse.coinwatch.data.source.local
+package com.maxdoro.employer.data.local
 
 import com.maxdoro.employer.data.local.dao.EmployerDao
 import com.maxdoro.employer.data.local.model.EmployerEntity
-import com.maxdoro.employer.data.local.MaxdoroLocalDataSource
+import com.maxdoro.employer.data.local.EmployerLocalDataSource
 import kotlinx.coroutines.flow.Flow
 
-class MaxdoroLocalDataSourceImpl(
+class EmployerLocalDataSourceImpl(
     private val employerDao: EmployerDao
-) : MaxdoroLocalDataSource {
+) : EmployerLocalDataSource {
 
     override fun getEmployers(): Flow<List<EmployerEntity>> {
         return employerDao.getEmployers()

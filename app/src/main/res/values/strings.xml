@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Maxdoro Employer</string>
+    <string name="search_screen">Search</string>
+    <string name="search_input_placeholder">Search employers</string>
 </resources>

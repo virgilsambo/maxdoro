@@ -2,6 +2,7 @@ package com.maxdoro.employer.data.remote
 
 import android.util.Log
 import com.maxdoro.employer.common.Result
+import com.maxdoro.employer.data.local.EmployerLocalDataSource
 import com.maxdoro.employer.di.IoDispatcher
 import com.maxdoro.employer.model.Employer
 import kotlinx.coroutines.CoroutineDispatcher
@@ -10,6 +11,7 @@ import javax.inject.Inject
 
 class EmployerRepositoryImpl @Inject constructor(
     private val networkDataSource: EmployerNetworkDataSource,
+    private val localDataSource: EmployerLocalDataSource,
     @IoDispatcher private val ioDispatcher: CoroutineDispatcher
 ) : EmployerRepository {
 
@@ -38,5 +40,4 @@ class EmployerRepositoryImpl @Inject constructor(
     override suspend fun getEmployerDetail(employerId: Int): Result<Employer> {
         return Result.Error("Can't get search results")
     }
-
 }

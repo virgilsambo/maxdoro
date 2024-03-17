@@ -1,5 +1,6 @@
 package com.maxdoro.employer.di
 
+import com.maxdoro.employer.data.local.EmployerLocalDataSource
 import com.maxdoro.employer.data.remote.EmployerNetworkDataSource
 import com.maxdoro.employer.data.remote.EmployerRepository
 import com.maxdoro.employer.data.remote.EmployerRepositoryImpl
@@ -18,10 +19,12 @@ object RepositoryModule {
     @Singleton
     fun provideEmployerRepository(
         employerNetworkDataSource: EmployerNetworkDataSource,
+        employerLocalDataSource: EmployerLocalDataSource,
         @IoDispatcher ioDispatcher: CoroutineDispatcher
     ): EmployerRepository {
         return EmployerRepositoryImpl(
             networkDataSource = employerNetworkDataSource,
+            localDataSource = employerLocalDataSource,
             ioDispatcher = ioDispatcher
         )
     }
