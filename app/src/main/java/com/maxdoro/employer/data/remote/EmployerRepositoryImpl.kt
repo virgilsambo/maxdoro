@@ -43,16 +43,11 @@ class EmployerRepositoryImpl @Inject constructor(
                     )
                     Result.Success(body)
                 } else {
-                    Log.e(
-                        "Result",
-                        "GET SearchResult unsuccessful retrofit response ${response.message()}"
-                    )
-                    Result.Error("Can't get search results")
+                    Result.Error("Search results are unavailable")
                 }
             }
         } catch (e: Exception) {
-            Log.e("Result", "GET SearchResult error ${e.message}")
-            Result.Error(" results")
+            Result.Error("Somthing went terribly wrong, ${e.message}")
         }
     }
 
