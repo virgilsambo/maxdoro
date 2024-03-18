@@ -30,7 +30,7 @@ The architecture of **EmployerSearch** follows modern Android app development pr
 A high-level overview of the app's architecture is as follows:
 
 <p align="center">
-   <img src="[https://imgur.com/a/fPcw5Qq](https://i.imgur.com/Tn5LpwG.png)" width="750">
+   <img src="https://i.imgur.com/Tn5LpwG.png" width="750">
 </p>
 
 # Testing 
